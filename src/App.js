@@ -10,6 +10,8 @@ import {
   Environment,
   Cloud,
   OrbitControls,
+  Billboard,
+  Html,
 } from '@react-three/drei';
 import { useRoute, useLocation } from 'wouter';
 import { easing } from 'maath';
@@ -30,20 +32,23 @@ export const App = ({ images }) => (
           resolution={2048}
           mixBlur={1}
           mixStrength={100}
-          roughness={1}
+          roughness={0.8}
           depthScale={1.2}
           minDepthThreshold={0.4}
           maxDepthThreshold={1.4}
           color='#050505'
-          metalness={0.5}
+          metalness={0.9}
         />
       </mesh>
     </group>
     <Cloud position={[6, 5, -10]} speed={0.4} opacity={0.5} depth={1} width={3} />
-    <Cloud position={[0, 4, -10]} speed={0.4} opacity={0.5} depth={1} width={3} />
+    <Cloud position={[0, 6, -6]} speed={0.7} opacity={0.2} depth={1.3} width={3} />
     <Cloud position={[-6, 4.3, -10]} speed={0.4} opacity={0.5} depth={1} width={3} />
     <Cloud position={[10, 4, -10]} speed={0.4} opacity={0.5} depth={0.7} width={1} />
     <Cloud position={[-10, 4.3, -10]} speed={0.4} opacity={0.5} depth={0.7} width={1} />
+    <Text fontSize={2} color='#101015' position={[0, 4, -4]}>
+      Murat Ogulcan Sahin
+    </Text>
     <Environment preset='city' />
   </Canvas>
 );
@@ -82,7 +87,7 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() })
   );
 }
 
-function Frame({ text, url, c = new THREE.Color(), ...props }) {
+function Frame({ html, url, c = new THREE.Color(), ...props }) {
   const image = useRef();
   const frame = useRef();
   const [, params] = useRoute('/item/:id');
@@ -119,12 +124,18 @@ function Frame({ text, url, c = new THREE.Color(), ...props }) {
         <Text
           maxWidth={0.7}
           anchorX='center'
-          anchorY='center'
+          anchorY='bottom-baseline'
           position={[0, 0, 0.71]}
           fontSize={0.1}
           color='#101015'
         >
-          {text}
+          <Html position={[0, 0, 0.73]} scale={[0.2, 0.2, 0.2]} transform occlude>
+            <div
+              className='content'
+              style={{ color: '#101015' }}
+              dangerouslySetInnerHTML={{ __html: html }}
+            ></div>
+          </Html>
         </Text>
         <Image raycast={() => null} ref={image} position={[0, 0, 0.7]} url={url} />
       </mesh>
