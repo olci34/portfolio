@@ -9,13 +9,11 @@ import {
   Text,
   Environment,
   Cloud,
-  OrbitControls,
-  Billboard,
   Html,
+  useGLTF,
 } from '@react-three/drei';
 import { useRoute, useLocation } from 'wouter';
 import { easing } from 'maath';
-import getUuid from 'uuid-by-string';
 
 const GOLDENRATIO = 1.61803398875;
 
@@ -49,6 +47,7 @@ export const App = ({ images }) => (
     <Text fontSize={2} color='#101015' position={[0, 4, -4]}>
       Murat Ogulcan Sahin
     </Text>
+    <Stat position={[0, 0, 3]} scale={0.02} />
     <Environment preset='city' />
   </Canvas>
 );
@@ -87,13 +86,13 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() })
   );
 }
 
-function Frame({ html, url, c = new THREE.Color(), ...props }) {
+function Frame({ name, html, url, c = new THREE.Color(), ...props }) {
   const image = useRef();
   const frame = useRef();
+  const htmlDiv = useRef();
   const [, params] = useRoute('/item/:id');
   const [hovered, hover] = useState(false);
   const [rnd] = useState(() => Math.random());
-  const name = getUuid(url);
   const isActive = params?.id === name;
   useCursor(hovered);
   useFrame((state, dt) => {
@@ -104,6 +103,8 @@ function Frame({ html, url, c = new THREE.Color(), ...props }) {
       0.1,
       dt,
     );
+    easing.damp;
+
     easing.dampC(frame.current.material.color, hovered ? 'orange' : 'white', 0.1, dt);
   });
   return (
@@ -116,28 +117,28 @@ function Frame({ html, url, c = new THREE.Color(), ...props }) {
         position={[0, GOLDENRATIO / 1.9, 0]}
       >
         <boxGeometry />
-        <meshStandardMaterial color='#151515' metalness={0.5} roughness={0.5} envMapIntensity={2} />
+        <meshStandardMaterial color='#151515' metalness={0.5} roughness={0.2} envMapIntensity={3} />
         <mesh ref={frame} raycast={() => null} scale={[0.9, 0.93, 0.9]} position={[0, 0, 0.2]}>
           <boxGeometry />
           <meshBasicMaterial toneMapped={false} fog={false} />
-        </mesh>
-        <Text
-          maxWidth={0.7}
-          anchorX='center'
-          anchorY='bottom-baseline'
-          position={[0, 0, 0.71]}
-          fontSize={0.1}
-          color='#101015'
-        >
-          <Html position={[0, 0, 0.73]} scale={[0.2, 0.2, 0.2]} transform occlude>
-            <div
-              className='content'
-              style={{ color: '#101015' }}
-              dangerouslySetInnerHTML={{ __html: html }}
-            ></div>
+          <Html
+            ref={htmlDiv}
+            className='content'
+            position={[0, 0, 0.71]}
+            scale={0.2}
+            transform
+            occlude
+          >
+            <div dangerouslySetInnerHTML={{ __html: html }}></div>
           </Html>
-        </Text>
-        <Image raycast={() => null} ref={image} position={[0, 0, 0.7]} url={url} />
+        </mesh>
+        <Image
+          raycast={() => null}
+          ref={image}
+          position={[0, 0, 0.7]}
+          color={new THREE.Color('#AEAEAE')}
+          url={url}
+        />
       </mesh>
       <Text
         maxWidth={0.1}
@@ -148,6 +149,16 @@ function Frame({ html, url, c = new THREE.Color(), ...props }) {
       >
         {name.split('-').join(' ')}
       </Text>
+    </group>
+  );
+}
+
+function Stat(props) {
+  const { nodes, materials } = useGLTF('/poly.gltf');
+
+  return (
+    <group {...props}>
+      <mesh castShadow receiveShadow geometry={nodes.meshname.geometry} material={materials.stat} />
     </group>
   );
 }
