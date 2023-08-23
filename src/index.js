@@ -10,26 +10,55 @@ const images = [
     position: [0, 0, 1.5],
     rotation: [0, 0, 0],
     url: pexel(1103970),
-    html: `
-    <h5 class="row text-center">hi</h5>
-    <h5 class="row text-center">i am</h5>
-    <h5 class="row text-center">Ogulcan</h5>`,
+    isMainFrame: true,
+    html: `<div class="row">
+    <h5 class="col">
+      hi <br />
+      i am <br />
+      Ogulcan
+    </h5>
+  </div>
+  <div class="row mb-2">
+    <div class="col-12">full stack developer</div>
+    <div class="col-12">curious mind</div>
+  </div>
+  <div class="row">
+    <div class="col text-center">
+      <a class="btn btn-secondary btn-sm" href="mailto:muratogulcansahin@gmail.com"
+        ><i class="fa-solid fa-envelope"></i
+      ></a>
+    </div>
+    <div class="col text-center">
+      <a class="btn btn-secondary btn-sm" target="_blank" href="https://github.com/olci34"
+        ><i class="fa-brands fa-github"></i
+      ></a>
+    </div>
+    <div class="col text-center">
+      <a
+        class="btn btn-secondary btn-sm"
+        target="_blank"
+        href="https://www.linkedin.com/in/muratogulcansahin/"
+        ><i class="fa-brands fa-linkedin"></i
+      ></a>
+    </div>
+  </div>`,
   },
   // Back
   {
     name: 'Education-Skills',
     position: [-0.8, 0, -0.8],
     rotation: [0, 0, 0],
-    url: pexel(6077089),
+    url: pexel(7078283),
+    isMainFrame: false,
     html: `<h5>Education</h5>
-    <div class="row border-bottom border-light justify-content-between">
+    <div class="row border-bottom border-dark justify-content-between">
       <div class="col">Istanbul University</div>
       <div class="col">09/2011 - 07/2015</div>
     </div>
     <div class="row">
       <div class="col">B.S. - Maritime Transportation and Management Engineering</div>
     </div>
-    <div class="row border-bottom border-light justify-content-between mt-2">
+    <div class="row border-bottom border-dark justify-content-between mt-2">
       <div class="col">Flatiron School</div>
       <div class="col">01/2021 - 06/2021</div>
     </div>
@@ -41,7 +70,7 @@ const images = [
     <div class="row">
       <div class="col">
         C#, ASP.NET, TypeScript, Angular, React, Akita, Redux, Ruby on Rails, RDMS, T-SQL, Git, REST,
-        AJAX, Bootstrap
+        AJAX, Bootstrap, Three.js, Angular Material
       </div>
     </div>`,
   },
@@ -49,9 +78,12 @@ const images = [
     name: 'Project-MoDay',
     position: [0.8, 0, -0.8],
     rotation: [0, 0, 0],
-    url: pexel(310452),
-    html: `<h5>MoDay</h5>
-    <div class="row border-bottom border-light">Movie Suggestion Console App</div>
+    url: pexel(5825593),
+    isMainFrame: false,
+    html: `<h5>Project</h5>
+    <div class="row"><div class="col">MoDay</div></div>
+    <div class="row border-bottom border-dark">
+    <div class="col">Movie Suggestion Console App</div></div>
     <div class="row">
       <ul class="col">
         <li>Collected data by web scraping</li>
@@ -60,11 +92,11 @@ const images = [
       </ul>
     </div>
     <div class="row">
-      <div class="col">
-        <a class="btn btn-secondary btn-sm"><i class="fa-solid fa-code"></i></a>
+      <div class="col text-center">
+        <a class="btn btn-secondary btn-sm" target="_blank" href="#"><i class="fa-solid fa-code"></i></a>
       </div>
-      <div class="col">
-        <a class="btn btn-secondary btn-sm">visit</a>
+      <div class="col text-center">
+        <a class="btn btn-secondary btn-sm" target="_blank" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
       </div>
     </div>`,
   },
@@ -73,9 +105,11 @@ const images = [
     name: 'Experience-Freelance',
     position: [-1.75, 0, 0.25],
     rotation: [0, Math.PI / 2.5, 0],
-    url: pexel(1154739),
-    html: `<h5>Freelance</h5>
-    <div class="row border-bottom border-light justify-content-between">
+    isMainFrame: false,
+    url: pexel(3369537),
+    html: `<h5>Experience</h5>
+    <div class="row"><div class="col">Freelance</div></div>
+    <div class="row border-bottom border-dark justify-content-between">
       <div class="col">Junior Software Dev</div>
       <div class="col">03/2021 - Present</div>
     </div>
@@ -91,30 +125,35 @@ const images = [
     name: 'Experience-CATIC',
     position: [-2.15, 0, 1.5],
     rotation: [0, Math.PI / 2.5, 0],
-    url: pexel(1493226),
-    html: `<h5>CATIC</h5>
-    <div class="row border-bottom border-light justify-content-between">
-    <div class="col">Junior Software Dev</div>
-    <div class="col">01/2022 - Present</div>
-  </div>
-  <div class="row">
-    <ul class="col">
-      <li>Built SPA Angular components, exploited Akita state management</li>
-      <li>Managed RDMS using T-SQL in SQL Server</li>
-      <li>Maintained ASP.NET internal and external REST APIs</li>
-      <li>Designed and implemented bussiness rules in Agile</li>
-    </ul>
-  </div>`,
+    isMainFrame: false,
+    url: pexel(2619248),
+    html: `<h5>Experience</h5>
+    <div class="row"><div class="col">CATIC</div></div>
+    <div class="row border-bottom border-dark justify-content-between">
+      <div class="col">Junior Software Dev</div>
+      <div class="col">01/2022 - Present</div>
+    </div>
+    <div class="row">
+      <ul class="col">
+        <li>Built SPA Angular components, exploited Akita state management</li>
+        <li>Managed RDMS using T-SQL in SQL Server</li>
+        <li>Maintained ASP.NET internal and external REST APIs</li>
+        <li>Designed and implemented bussiness rules in Agile</li>
+      </ul>
+    </div>`,
   },
-  // { position: [-2, 0, 2.75], rotation: [0, Math.PI / 2.5, 0], url: pexel(358574), text: 'Text 5' },
   // Right
   {
     name: 'Project-Atar-Cabos',
     position: [1.75, 0, 0.25],
     rotation: [0, -Math.PI / 2.5, 0],
-    url: pexel(691858),
-    html: `<h5>Atar Cabos</h5>
-    <div class="row border-bottom border-light">Sailing School / Virtual Education Platform</div>
+    isMainFrame: false,
+    url: pexel(7078387),
+    html: `<h5>Project</h5>
+    <div class="row"><div class="col">Atar Cabos</div></div>
+    <div class="row border-bottom border-dark">
+    <div class="col">Sailing School / Virtual Education Platform</div>
+    </div>
     <div class="row">
       <ul class="col">
         <li>Developed a Rails web app</li>
@@ -124,11 +163,11 @@ const images = [
       </ul>
     </div>
     <div class="row">
-      <div class="col">
-        <a class="btn btn-secondary btn-sm"><i class="fa-solid fa-code"></i></a>
+      <div class="col text-center">
+        <a class="btn btn-secondary btn-sm" target="_blank" href="#"><i class="fa-solid fa-code"></i></a>
       </div>
-      <div class="col">
-        <a class="btn btn-secondary btn-sm">visit</a>
+      <div class="col text-center">
+        <a class="btn btn-secondary btn-sm" target="_blank" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
       </div>
     </div>`,
   },
@@ -136,9 +175,11 @@ const images = [
     name: 'Project-Wherever',
     position: [2.15, 0, 1.5],
     rotation: [0, -Math.PI / 2.5, 0],
+    isMainFrame: false,
     url: pexel(911738),
-    html: `<h5>Wherever</h5>
-    <div class="row border-bottom border-light">3D Solar System SPA</div>
+    html: `<h5>Project</h5>
+    <div class="row"><div class="col">Wherever</div></div>
+    <div class="row border-bottom border-dark"><div class="col">3D Solar System SPA</div></div>
     <div class="row">
       <ul class="col">
         <li>Applied React functional components and exploited hooks</li>
@@ -147,20 +188,14 @@ const images = [
       </ul>
     </div>
     <div class="row">
-      <div class="col">
-        <a class="btn btn-secondary btn-sm"><i class="fa-solid fa-code"></i></a>
+      <div class="col text-center">
+        <a class="btn btn-secondary btn-sm" target="_blank" href="#"><i class="fa-solid fa-code"></i></a>
       </div>
-      <div class="col">
-        <a class="btn btn-secondary btn-sm">visit</a>
+      <div class="col text-center">
+        <a class="btn btn-secondary btn-sm" target="_blank" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
       </div>
     </div>`,
   },
-  // { position: [2, 0, 2.75], rotation: [0, -Math.PI / 2.5, 0], url: pexel(1738986), text: 'Text 8' },
 ];
 
 createRoot(document.getElementById('root')).render(<App images={images} />);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
