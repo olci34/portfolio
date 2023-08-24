@@ -13,10 +13,7 @@ import {
   Loader,
   useProgress,
   Image,
-  OrbitControls,
-  Circle,
   useTexture,
-  PerspectiveCamera,
 } from '@react-three/drei';
 import { useRoute, useLocation } from 'wouter';
 import { easing } from 'maath';
@@ -92,7 +89,13 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() })
       ref={ref}
       onClick={(e) => (
         e.stopPropagation(),
-        setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name)
+        setLocation(
+          clicked.current === e.object?.name
+            ? '/'
+            : e.object.parent?.name
+            ? '/item/' + e.object.parent.name
+            : '/',
+        )
       )}
       onPointerMissed={() => setLocation('/')}
     >
@@ -106,7 +109,6 @@ function Frame({ name, url, isMainFrame, html, ...props }) {
   const frame = useRef();
   const htmlDiv = useRef();
   const [, params] = useRoute('/item/:id');
-  const [colorMap] = useTexture([pp]);
   const [hovered, hover] = useState(false);
   const isActive = params?.id === name;
   useCursor(hovered);
@@ -142,16 +144,13 @@ function Frame({ name, url, isMainFrame, html, ...props }) {
             position={[0, 0, 0.72]}
             scale={[0.2, 0.15, 0.05]}
             transform
-            occlude='raycast'
+            occlude
             pointerEvents='none'
           >
             <div className='content' dangerouslySetInnerHTML={{ __html: html }}></div>
           </Html>
         </mesh>
-        <mesh position={[0.06, 0.1, 0.71]} visible={isMainFrame} ra>
-          <circleGeometry args={[0.3]} />
-          <meshStandardMaterial map={colorMap} roughness={0.0} />
-        </mesh>
+        <Photo isMainFrame={isMainFrame} />
         <Image raycast={() => null} ref={image} position={[0, 0, 0.7]} url={url} />
       </mesh>
       <Text
@@ -196,8 +195,14 @@ function Navbar(props) {
   );
 }
 
-function Progressbar(props) {
-  const { progress } = useProgress();
-
-  return <Html center>{progress.toFixed(1)} % loading</Html>;
+function Photo({ isMainFrame }) {
+  const [colorMap] = useTexture([pp]);
+  if (isMainFrame) {
+    return (
+      <mesh position={[0.06, 0.1, 0.71]}>
+        <circleGeometry args={[0.3]} />
+        <meshStandardMaterial map={colorMap} roughness={0.0} />
+      </mesh>
+    );
+  }
 }

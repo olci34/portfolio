@@ -20,7 +20,7 @@ const images = [
   </div>
   <div class="row mb-2">
     <div class="col-12">full stack developer</div>
-    <div class="col-12">curious mind</div>
+    <div class="col-12">curious mind, self-starter</div>
   </div>
   <div class="row">
     <div class="col text-center">
