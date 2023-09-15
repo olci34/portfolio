@@ -11,7 +11,6 @@ import {
   Cloud,
   Html,
   Loader,
-  useProgress,
   Image,
   useTexture,
 } from '@react-three/drei';
@@ -50,8 +49,6 @@ export const App = ({ images }) => (
           <Cloud position={[9, 6, -7]} speed={0.4} opacity={0.5} depth={2} width={2} />
           <Cloud position={[0, 6, -5]} speed={0.4} opacity={0.5} depth={1} width={4} />
         </group>
-        {/* <Cloud position={[10, 4, -10]} speed={0.4} opacity={0.5} depth={0.7} width={1} /> */}
-        {/* <Cloud position={[-10, 4.3, -10]} speed={0.4} opacity={0.5} depth={0.7} width={1} /> */}
         <Text fontSize={2} color='#101015' position={[0, 4, -6]} visible>
           Murat Ogulcan Sahin
         </Text>
@@ -89,13 +86,7 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() })
       ref={ref}
       onClick={(e) => (
         e.stopPropagation(),
-        setLocation(
-          clicked.current === e.object?.name
-            ? '/'
-            : e.object.parent?.name
-            ? '/item/' + e.object.parent.name
-            : '/',
-        )
+        setLocation(clicked.current === e.object ? '/' : `/item/${e.object.name}`)
       )}
       onPointerMissed={() => setLocation('/')}
     >
@@ -150,7 +141,7 @@ function Frame({ name, url, isMainFrame, html, ...props }) {
             <div className='content' dangerouslySetInnerHTML={{ __html: html }}></div>
           </Html>
         </mesh>
-        <Photo isMainFrame={isMainFrame} />
+        <Photo isMainFrame={isMainFrame} scale={[]} />
         <Image raycast={() => null} ref={image} position={[0, 0, 0.7]} url={url} />
       </mesh>
       <Text
@@ -199,7 +190,7 @@ function Photo({ isMainFrame }) {
   const [colorMap] = useTexture([pp]);
   if (isMainFrame) {
     return (
-      <mesh position={[0.06, 0.1, 0.71]}>
+      <mesh position={[0.06, 0.1, 0.71]} scale={[1.1, 0.85, 0.5]}>
         <circleGeometry args={[0.3]} />
         <meshStandardMaterial map={colorMap} roughness={0.0} />
       </mesh>
