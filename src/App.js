@@ -64,7 +64,7 @@ export const App = ({ images }) => (
 function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) {
   const ref = useRef();
   const clicked = useRef();
-  const [, params] = useRoute('/item/:id');
+  const [, params] = useRoute('/portfolio/item/:id');
   const [, setLocation] = useLocation();
   useEffect(() => {
     clicked.current = ref.current.getObjectByName(params?.id);
@@ -86,9 +86,11 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() })
       ref={ref}
       onClick={(e) => (
         e.stopPropagation(),
-        setLocation(clicked.current === e.object ? '/' : `/item/${e.object.name}`)
+        setLocation(
+          clicked.current === e.object ? '/portfolio' : `/portfolio/item/${e.object.name}`,
+        )
       )}
-      onPointerMissed={() => setLocation('/')}
+      onPointerMissed={() => setLocation('/portfolio')}
     >
       {images.map((props) => <Frame key={props.url} {...props}/> /* prettier-ignore */)}
     </group>
@@ -99,7 +101,7 @@ function Frame({ name, url, isMainFrame, html, ...props }) {
   const image = useRef();
   const frame = useRef();
   const htmlDiv = useRef();
-  const [, params] = useRoute('/item/:id');
+  const [, params] = useRoute('/portfolio/item/:id');
   const [hovered, hover] = useState(false);
   const isActive = params?.id === name;
   useCursor(hovered);
@@ -164,21 +166,21 @@ function Navbar(props) {
       <div
         className='col navbar-item'
         id='nav-about'
-        onClick={(e) => (e.stopPropagation(), setLocation('/item/Welcome'))}
+        onClick={(e) => (e.stopPropagation(), setLocation('/portfolio/item/Welcome'))}
       >
         About
       </div>
       <div
         className='col navbar-item'
         id='navbar-experiences'
-        onClick={(e) => (e.stopPropagation(), setLocation('/item/Experience-CATIC'))}
+        onClick={(e) => (e.stopPropagation(), setLocation('/portfolio/item/Experience-CATIC'))}
       >
         Experience
       </div>
       <div
         className='col navbar-item'
         id='navbar-contact'
-        onClick={(e) => (e.stopPropagation(), setLocation('/item/Welcome'))}
+        onClick={(e) => (e.stopPropagation(), setLocation('/portfolio/item/Welcome'))}
       >
         Contact
       </div>
