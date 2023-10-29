@@ -1,15 +1,22 @@
 import { createRoot } from 'react-dom/client';
 import './App.css';
 import { App } from './App';
+import welcomeImg from './img/1103970.jpeg';
+import educationImg from './img/7078283.jpeg';
+import modayImg from './img/5825593.jpeg';
+import freelanceImg from './img/3369537.jpeg';
+import caticImg from './img/2619248.jpeg';
+import atarcabosImg from './img/7078387.jpeg';
+import whereverImg from './img/911738.jpeg';
 
-const pexel = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg`;
+// const pexel = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg`;
 const images = [
   // Front
   {
     name: 'Welcome',
     position: [0, 0, 1.5],
     rotation: [0, 0, 0],
-    url: pexel(1103970),
+    url: welcomeImg,
     isMainFrame: true,
     html: `<div class="row">
     <h5 class="col">
@@ -48,7 +55,7 @@ const images = [
     name: 'Education-Skills',
     position: [-0.8, 0, -0.8],
     rotation: [0, 0, 0],
-    url: pexel(7078283),
+    url: educationImg,
     isMainFrame: false,
     html: `<h5>Education</h5>
     <div class="row border-bottom border-dark justify-content-between">
@@ -78,7 +85,7 @@ const images = [
     name: 'Project-MoDay',
     position: [0.8, 0, -0.8],
     rotation: [0, 0, 0],
-    url: pexel(5825593),
+    url: modayImg,
     isMainFrame: false,
     html: `<h5>Project</h5>
     <div class="row"><div class="col">MoDay</div></div>
@@ -106,7 +113,7 @@ const images = [
     position: [-1.75, 0, 0.25],
     rotation: [0, Math.PI / 2.5, 0],
     isMainFrame: false,
-    url: pexel(3369537),
+    url: freelanceImg,
     html: `<h5>Experience</h5>
     <div class="row"><div class="col">Freelance</div></div>
     <div class="row border-bottom border-dark justify-content-between">
@@ -126,7 +133,7 @@ const images = [
     position: [-2.15, 0, 1.5],
     rotation: [0, Math.PI / 2.5, 0],
     isMainFrame: false,
-    url: pexel(2619248),
+    url: caticImg,
     html: `<h5>Experience</h5>
     <div class="row"><div class="col">CATIC</div></div>
     <div class="row border-bottom border-dark justify-content-between">
@@ -148,7 +155,7 @@ const images = [
     position: [1.75, 0, 0.25],
     rotation: [0, -Math.PI / 2.5, 0],
     isMainFrame: false,
-    url: pexel(7078387),
+    url: atarcabosImg,
     html: `<h5>Project</h5>
     <div class="row"><div class="col">Atar Cabos</div></div>
     <div class="row border-bottom border-dark">
@@ -176,7 +183,7 @@ const images = [
     position: [2.15, 0, 1.5],
     rotation: [0, -Math.PI / 2.5, 0],
     isMainFrame: false,
-    url: pexel(911738),
+    url: whereverImg,
     html: `<h5>Project</h5>
     <div class="row"><div class="col">Wherever</div></div>
     <div class="row border-bottom border-dark"><div class="col">3D Solar System SPA</div></div>
